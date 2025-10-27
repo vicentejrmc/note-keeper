@@ -1,7 +1,11 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Routes } from '@angular/router';
 
-import { routes } from './app.routes';
+export const routes: Routes = [
+{ path: '', redirectTo: 'inicio', pathMatch: 'full'},
+{ path: 'inicio', loadComponent: ()=> import('./components/inicio/inicio').then(c => c.Inicio)},
+
+];
 
 export const appConfig: ApplicationConfig = {
   providers: [
