@@ -1,1 +1,66 @@
-<p>inicio works!</p>
+<mat-card>
+  <mat-card-content>
+    <div class="row justify-content-center align-items-center g-3 p-3">
+      <div class="col">
+        <h3>Crie suas notas e organize sua rotina.</h3>
+
+        <p class="mt-4 fs-6">
+          Este é o seu espaço de organização pessoal. Tenha controle sobre o seu dia a dia Crie lembretes e aumente a sua produtividade de forma simples e prática.
+        </p>
+
+        <ul class="fs-6">
+          <li> ✏️ Anote ideias, lembretes e tarefas.</li>
+          <li> 🗂️ Organize tudo em categorias, cores e prioridades.</li>
+          <li> 🔒 Keep calm, Seus dados pessoais serão protegidos.</li>
+        </ul>
+
+        <p class="fs-6">
+          Comece agora e organize sua rotina de maneira inteligente!
+        </p>
+      </div>
+
+      <div class="col-lg-4">
+        <img
+          class="img-fluid" style="max-width: 270px;"
+          src="/img/banner-inicial.svg"
+          alt="Um home e uma mulher observando e usando um grande quadro de anotações na parede.">
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div class="row g-3 my-3">
+  <div class="col-lg-3 card-column">
+    <mat-card class="classroom-card">
+      <a routerLink="/categorias" class="card-hero" style="--hero-url: url('/img/card-header.jpg')">
+        <h4 class="card-hero__title">Categorias</h4>
+      </a>
+      <mat-card-content></mat-card-content>
+      <mat-divider></mat-divider>
+
+      <mat-card-actions align="end">
+        <a routerLink="/categorias" mat-icon-button>
+          <mat-icon>arrow_outward</mat-icon>
+        </a>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+
+   <div class="col-lg-3 card-column">
+    <mat-card class="classroom-card">
+      <a routerLink="/notas" class="card-hero" style="--hero-url: url('/img/card-header.jpg')">
+        <h4 class="card-hero__title">Notas</h4>
+      </a>
+      <mat-card-content></mat-card-content>
+      <mat-divider></mat-divider>
+
+      <mat-card-actions align="end">
+        <a routerLink="/notas" mat-icon-button>
+          <mat-icon>arrow_outward</mat-icon>
+        </a>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>

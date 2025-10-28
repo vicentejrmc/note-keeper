@@ -21,8 +21,7 @@ import { RouterLink, RouterOutlet } from "@angular/router";
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    RouterLink,
-    RouterOutlet
+    RouterLink
 ]
 })
 export class ShellComponent {

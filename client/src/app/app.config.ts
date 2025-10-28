@@ -3,7 +3,10 @@ import { provideRouter, Routes } from '@angular/router';
 
 export const routes: Routes = [
 { path: '', redirectTo: 'inicio', pathMatch: 'full'},
+
 { path: 'inicio', loadComponent: ()=> import('./components/inicio/inicio').then(c => c.Inicio)},
+
+{path: 'categorias', loadChildren: ()=> import('./components/categorias/categorias.routes').then(r => r.categoriasRoutes)}
 
 ];
 
