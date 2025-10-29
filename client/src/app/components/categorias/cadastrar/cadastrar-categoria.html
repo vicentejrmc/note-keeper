@@ -1,0 +1,7 @@
+<p>cadastrar-categoria works!</p>
+
+<form [formGroup]="categoriaForm" (ngSubmit)="cadastrar()">
+  <label for="titulo">Título</label>
+  <input formControlName="titulo" type="text">
+  <button>Submit</button>
+</form>
