@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
-import { ListarCategoriasApiRespose, ListarCategoriasModel } from "./categorias.model";
+import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel, ListarCategoriasApiRespose, ListarCategoriasModel } from "./categorias.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,10 @@ export class CategoriaService{
     .pipe(
       map(res => res.registros)
     );
+  }
+
+  public cadastrar(categoriaModel: CadastrarCategoriaModel):
+    Observable<CadastrarCategoriaResponseModel> {
+      return this.http.post<CadastrarCategoriaResponseModel>(this.apiUrl, categoriaModel)
   }
 }

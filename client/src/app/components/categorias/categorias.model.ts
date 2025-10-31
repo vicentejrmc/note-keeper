@@ -8,5 +8,9 @@ export interface ListarCategoriasModel{
 }
 
 export interface CadastrarCategoriaModel{
-  titulo: string;
+  titulo: string | undefined;
+}
+
+export interface CadastrarCategoriaResponseModel{
+  id: string;
 }
