@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,14 +29,19 @@ export class CadastrarCategoria {
   protected readonly router = inject(Router);
 
 
-  protected categoriaForm = this.formBuilder.group({
-    titulo: []
+  protected categoriaForm: FormGroup = this.formBuilder.group({
+    titulo: ['', [Validators.required, Validators.minLength(3)]],
   })
+
+  //validação
+  get titulo(){
+    return this.categoriaForm.get('titulo');
+  }
 
   public cadastrar(){
     if (this.categoriaForm.invalid) return;
 
-    const categoriaModel = this.categoriaForm.value as CadastrarCategoriaModel;
+    const categoriaModel: CadastrarCategoriaModel = this.categoriaForm.value;
 
     this.categoriaSevice
       .cadastrar(categoriaModel)
