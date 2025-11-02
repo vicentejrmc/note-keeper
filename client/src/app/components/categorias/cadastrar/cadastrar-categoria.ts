@@ -7,8 +7,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from "@angular/router";
 import { CategoriaService } from '../categorias.service';
-import { CadastrarCategoriaModel } from '../categorias.model';
-import { finalize } from 'rxjs';
+import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel } from '../categorias.model';
+import {Observer, } from 'rxjs';
+import { NotificacaoSevice } from '../../shared/notificacao/notificacao.service';
 
 @Component({
   selector: 'app-cadastrar-categoria',
@@ -27,7 +28,7 @@ export class CadastrarCategoria {
   protected readonly categoriaSevice = inject(CategoriaService);
   protected readonly formBuilder = inject(FormBuilder);
   protected readonly router = inject(Router);
-
+  protected readonly notificacaoService = inject(NotificacaoSevice);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({
     titulo: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,11 +44,14 @@ export class CadastrarCategoria {
 
     const categoriaModel: CadastrarCategoriaModel = this.categoriaForm.value;
 
+    const cadastroObserver: Observer<CadastrarCategoriaResponseModel> = {
+      next: () => this.notificacaoService.sucesso(`O registro "${categoriaModel.titulo}" foi cadastrado com sucesso!`),
+      error: (err) => this.notificacaoService.erro(err.message),
+      complete: () => this.router.navigate(['/categorias']),
+    };
+
     this.categoriaSevice
       .cadastrar(categoriaModel)
-      .pipe(
-        finalize(() => this.router.navigate(['/categorias']))
-      )
-      .subscribe((res)=> console.log(res));
+      .subscribe(cadastroObserver);
   }
 }
