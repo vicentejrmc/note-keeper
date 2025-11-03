@@ -27,3 +27,7 @@ export interface DetalhesCategoriaModel{
   id: string;
   titulo: string;
 }
+
+export interface ExcluirCategoria{
+  id: string;
+}

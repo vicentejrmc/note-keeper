@@ -36,4 +36,10 @@ export class CategoriaService{
 
     return this.http.get<DetalhesCategoriaModel>(urlCompleto);
   }
+
+  public excluir(id: string): Observable<null> {
+    const urlCompleto = `${this.apiUrl}/${id}`;
+
+    return this.http.delete<null>(urlCompleto);
+  }
 }

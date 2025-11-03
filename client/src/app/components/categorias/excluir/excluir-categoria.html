@@ -1,1 +1,32 @@
-<p>excluir-categoria works!</p>
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <h2>Exclusão de Categoria</h2>
+    <hr class="border">
+
+    <mat-card class="p-2">
+      @if(categoria$ | async; as categoria){
+        <form (ngSubmit)="excluir()">
+          <mat-card-header>
+            <mat-card-title>Confirme a exclusão do registro</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="mt-2">
+            <span class="fs-6">Atenção, o processo de exclusão é irreversível! Deseja prosseguir com a exclusão do registro "{{categoria.titulo}}"? </span>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <a mat-stroked-button routerLink="/categorias">Voltar</a>
+            <button type="submit" mat-flat-button class="ms-2 px-5">
+              <mat-icon>check</mat-icon>
+              Confirmar
+            </button>
+          </mat-card-actions>
+        </form>
+      }
+    </mat-card>
+  </div>
+ </section>
+
+
+
+
