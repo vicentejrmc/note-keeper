@@ -9,7 +9,7 @@ import { Router, RouterLink } from "@angular/router";
 import { CategoriaService } from '../categorias.service';
 import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel } from '../categorias.model';
 import {Observer, } from 'rxjs';
-import { NotificacaoSevice } from '../../shared/notificacao/notificacao.service';
+import { NotificacaoService } from '../../shared/notificacao/notificacao.service';
 
 @Component({
   selector: 'app-cadastrar-categoria',
@@ -28,7 +28,7 @@ export class CadastrarCategoria {
   protected readonly categoriaSevice = inject(CategoriaService);
   protected readonly formBuilder = inject(FormBuilder);
   protected readonly router = inject(Router);
-  protected readonly notificacaoService = inject(NotificacaoSevice);
+  protected readonly notificacaoService = inject(NotificacaoService);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({
     titulo: ['', [Validators.required, Validators.minLength(3)]],

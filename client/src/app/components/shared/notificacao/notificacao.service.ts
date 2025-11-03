@@ -1,8 +1,8 @@
-import { inject, Injectable } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { EnvironmentProviders, inject, Injectable, makeEnvironmentProviders } from "@angular/core";
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable()
-export class NotificacaoSevice{
+export class NotificacaoService{
   protected readonly  snackBar = inject(MatSnackBar);
 
   public sucesso(mensagem: string):void{
