@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
-import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel, ListarCategoriasApiRespose, ListarCategoriasModel } from "./categorias.model";
+import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel, DetalhesCategoriaModel, EditarCategoriaModel, EditarCategoriaResponseModel, ListarCategoriasApiRespose, ListarCategoriasModel } from "./categorias.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,19 @@ export class CategoriaService{
 
   public cadastrar(categoriaModel: CadastrarCategoriaModel):
     Observable<CadastrarCategoriaResponseModel> {
-      return this.http.post<CadastrarCategoriaResponseModel>(this.apiUrl, categoriaModel)
+      return this.http.post<CadastrarCategoriaResponseModel>(this.apiUrl, categoriaModel);
+  }
+
+  public editar(id: string, editarCategoriaModel: EditarCategoriaModel):
+    Observable<EditarCategoriaResponseModel> {
+    const urlCompleto = `${this.apiUrl}/${id}`;
+
+    return this.http.put<EditarCategoriaResponseModel>(urlCompleto, editarCategoriaModel);
+  }
+
+    public selecionarPorId(id: string): Observable<DetalhesCategoriaModel> {
+    const urlCompleto = `${this.apiUrl}/${id}`;
+
+    return this.http.get<DetalhesCategoriaModel>(urlCompleto);
   }
 }

@@ -25,10 +25,10 @@ import { NotificacaoService } from '../../shared/notificacao/notificacao.service
   templateUrl: './cadastrar-categoria.html',
 })
 export class CadastrarCategoria {
-  protected readonly categoriaSevice = inject(CategoriaService);
   protected readonly formBuilder = inject(FormBuilder);
   protected readonly router = inject(Router);
   protected readonly notificacaoService = inject(NotificacaoService);
+  protected readonly categoriaSevice = inject(CategoriaService);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({
     titulo: ['', [Validators.required, Validators.minLength(3)]],
