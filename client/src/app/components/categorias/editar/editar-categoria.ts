@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { EditarCategoriaModel, EditarCategoriaResponseModel } from '../categorias.model';
+import { DetalhesCategoriaModel, EditarCategoriaModel, EditarCategoriaResponseModel} from '../categorias.model';
 import { filter, map, Observer, shareReplay, switchMap, take, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -42,10 +42,9 @@ export class EditarCategoria {
     return this.categoriaForm.get('titulo');
   }
 
-  protected readonly categoria$ = this._route.paramMap.pipe(
-    filter(params => params.has('id')),
-    map(params => params.get('id')!),
-    switchMap(id => this.categoriaSevice.selecionarPorId(id)),
+  protected readonly categoria$ = this._route.data.pipe(
+      filter((data) => data['categoria']),
+      map((data) => data['categoria'] as DetalhesCategoriaModel),
       tap(categoria => this.categoriaForm.patchValue(categoria)),
       shareReplay({bufferSize: 1, refCount: true}),
   );
@@ -66,7 +65,7 @@ export class EditarCategoria {
 
     this.categoria$.pipe(
       take(1), // determina quantidade de execuções para evitar erro de roteamento continuo impedindo o retorno (router.navigate([]).
-      switchMap(categoria => this.categoriaSevice.editar(categoria.id, editarCategoriaModel))
+      switchMap((categoria) => this.categoriaSevice.editar(categoria.id, editarCategoriaModel)),
     ).subscribe(edicaoObserver);
   }
 

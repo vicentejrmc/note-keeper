@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { DetalhesCategoriaModel } from '../categorias.model';
 
 @Component({
   selector: 'app-excluir-categoria',
@@ -31,10 +32,9 @@ export class ExcluirCategoria {
   protected readonly notificacaoService = inject(NotificacaoService);
   protected readonly categoriaSevice = inject(CategoriaService);
 
-  protected readonly categoria$ = this._route.paramMap.pipe(
-    filter(params => params.has('id')),
-    map(params => params.get('id')!),
-    switchMap(id => this.categoriaSevice.selecionarPorId(id)),
+  protected readonly categoria$ = this._route.data.pipe(
+      filter((data) => data['categoria']),
+      map((data) => data['categoria'] as DetalhesCategoriaModel),
       shareReplay({bufferSize: 1, refCount: true}),
   );
 
